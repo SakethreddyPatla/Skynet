@@ -1,0 +1,11 @@
+2026-09-10 14:24:48,125 [INFO] DataOpsPipeline -  Starting OpenSky Phase 1 Extraction Pipeline 
+2026-09-10 14:24:48,125 [INFO] DataOpsPipeline - Initiating API request to opensky Attempt 1/3 ...
+2026-09-10 14:24:50,602 [INFO] DataOpsPipeline - API Request Successful | Status: 200 | Latency: 2.47s
+2026-09-10 14:24:50,603 [INFO] DataOpsPipeline - Extracted 1030 state vectors fro API.
+2026-09-10 14:25:16,898 [INFO] DataOpsPipeline -  Starting OpenSky Phase 1 Extraction Pipeline 
+2026-09-10 14:25:16,899 [INFO] DataOpsPipeline - Initiating API request to opensky Attempt 1/3 ...
+2026-09-10 14:25:18,782 [INFO] DataOpsPipeline - API Request Successful | Status: 200 | Latency: 1.88s
+2026-09-10 14:25:18,785 [INFO] DataOpsPipeline - Extracted 1022 state vectors fro API.
+2026-09-10 14:25:18,814 [INFO] DataOpsPipeline - Batch sucessfully saved to disk: data/raw\opensky_raw_20260910_085518.json
+2026-09-10 14:25:18,815 [INFO] DataOpsPipeline - Pipeline Audit: Records = 1022 | Output Size = 479848 bytes
+2026-09-10 14:25:18,816 [INFO] DataOpsPipeline -  Phase 1 Pipeline Completed Successfully 
