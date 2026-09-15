@@ -1,10 +1,12 @@
 import os
+from dotenv import load_dotenv
 import json
 import logging
 import time
 from datetime import datetime, timezone
 import requests
 import pandas as pd
+from databricks.sdk import WorkspaceClient
 
 # Logging Configuration
 log_filename = "pipeline.log"
@@ -112,3 +114,20 @@ if __name__ == "__main__":
             logger.error(" Phase 1 Pipeline Completed with Warnings (No Data Saved) ")
     else:
         logger.error(" Phase 1 Pipeline Failed ")
+
+def upload_to_databricks_volume(local_file_path):
+    """Uploads local raw JSON file to Databricks Volume using workspace API credentials."""
+    host = os.getenv("DATABRICKS_HOST")
+    token = os.getenv("DATABRICKS_TOKEN")
+    
+    if not host or not token:
+        logger.error("Databricks environment variables missing. Skipping cloud upload.")
+        return
+
+    w = WorkspaceClient(host=host, token=token)
+    volume_path = f"/Volumes/skynet/default/raw_open_sky_landing/{os.path.basename(local_file_path)}"
+    
+    with open(local_file_path, "rb") as f:
+        w.files.upload(volume_path, f, overwrite=True)
+    
+    logger.info(f"Successfully pushed batch to Databricks Volume: {volume_path}")

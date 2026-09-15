@@ -1,0 +1,42 @@
+name: Daily Automated Dataops Pipeline
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_HTTP_PATH: ${{ secrets.DATABRICKS_HTTP_PATH }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pandas databricks-sdk dbt-databricks
+
+      - name: Step 1 - Fetch Opensky Data & Push to Databricks Volume
+        run: python extraction.py
+
+      - name: Step 2 - Execute dbt transformations
+        run: |
+          cd dbt_flight_ops
+          dbt run --profiles-dir .
+      
+      - name: Step 3 - Execute dbt Data Quality Tests
+        run: |
+          cd dbt_flight_ops
+          dbt test --profiles-dir .
