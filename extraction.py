@@ -101,6 +101,23 @@ def process_and_save_raw_payload(payload, latency):
     logger.info(f"Batch sucessfully saved to disk: {file_path}")
     logger.info(f"Pipeline Audit: Records = {record_count} | Output Size = {os.path.getsize(file_path)} bytes")
     return True
+def upload_to_databricks_volume(local_file_path):
+    """Uploads local raw JSON file to Databricks Volume using workspace API credentials."""
+    host = os.getenv("DATABRICKS_HOST")
+    token = os.getenv("DATABRICKS_TOKEN")
+    
+    if not host or not token:
+        logger.error("Databricks environment variables missing. Skipping cloud upload.")
+        return
+
+    w = WorkspaceClient(host=host, token=token)
+    volume_path = f"/Volumes/skynet/default/raw_open_sky_landing/{os.path.basename(local_file_path)}"
+    
+    with open(local_file_path, "rb") as f:
+        w.files.upload(volume_path, f, overwrite=True)
+    
+    logger.info(f"Successfully pushed batch to Databricks Volume: {volume_path}")
+    
 if __name__ == "__main__":
     logger.info(" Starting OpenSky Phase 1 Extraction Pipeline ")
     
