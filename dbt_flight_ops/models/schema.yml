@@ -16,13 +16,13 @@ models:
           - not_null
 
   - name: fct_country_kpis
-    description: "Gold Layer: Aggregated flight KPIs grouped by origin country and status."
+    description: "Gold Layer: Incremental hourly flight telemetry KPIs aggregated by country."
     columns:
-      - name: origin_country
-        description: "Country where the aircraft is registered."
+      - name: kpi_surrogate_key
+        description: "Primary key: MD5 hash of batch_window_utc + origin_country + on_ground."
         tests:
           - not_null
+          - unique
       - name: total_active_aircraft
-        description: "Count of unique aircraft observed per country group."
         tests:
           - not_null
