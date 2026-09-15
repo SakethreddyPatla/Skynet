@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: stg_flights
+    description: "Silver Layer: Cleaned and validated flight telemetry state vectors."
+    columns:
+      - name: icao24
+        description: "Unique 24-bit ICAO aircraft transponder address."
+        tests:
+          - not_null
+      - name: latitude
+        tests:
+          - not_null
+      - name: longitude
+        tests:
+          - not_null
+
+  - name: fct_country_kpis
+    description: "Gold Layer: Aggregated flight KPIs grouped by origin country and status."
+    columns:
+      - name: origin_country
+        description: "Country where the aircraft is registered."
+        tests:
+          - not_null
+      - name: total_active_aircraft
+        description: "Count of unique aircraft observed per country group."
+        tests:
+          - not_null

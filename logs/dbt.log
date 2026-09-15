@@ -1,0 +1,129 @@
+[0m20:15:35.306358 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014BA6105BE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014BA3CA4B90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014BA8A1B9D0>]}
+
+
+============================== 20:15:35.311834 | a5aedd8b-9c46-4db5-8474-a0d0b2010495 ==============================
+[0m20:15:35.311834 [info ] [MainThread]: Running with dbt=1.12.3
+[0m20:15:35.312717 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'target_path': 'None', 'maximum_seed_size_mib': '1', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\saket\\.dbt', 'use_colors': 'True', 'hints_enabled': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'invocation_command': 'dbt init dbt_flight_ops', 'log_path': 'logs'}
+[0m20:15:35.346953 [debug] [MainThread]: Starter project path: C:\Users\saket\Skynet\.venv\Lib\site-packages\dbt\include\starter_project
+[0m20:15:35.390492 [info ] [MainThread]: Setting up your profile.
+[0m20:15:45.188436 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m20:15:45.188873 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m20:15:45.189123 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m20:18:27.504381 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+
+[0m20:18:27.507569 [error] [MainThread]: Traceback (most recent call last):
+  File "C:\Users\saket\Skynet\.venv\Lib\site-packages\dbt\cli\requires.py", line 198, in wrapper
+    result, success = func(*args, **kwargs)
+                      ~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\saket\Skynet\.venv\Lib\site-packages\dbt\cli\requires.py", line 144, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\saket\Skynet\.venv\Lib\site-packages\dbt\cli\main.py", line 504, in init
+    results = task.run()
+  File "C:\Users\saket\Skynet\.venv\Lib\site-packages\dbt\task\init.py", line 363, in run
+    self.setup_profile(profile_name)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\saket\Skynet\.venv\Lib\site-packages\dbt\task\init.py", line 265, in setup_profile
+    self.create_profile_from_target(adapter, profile_name=profile_name)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saket\Skynet\.venv\Lib\site-packages\dbt\task\init.py", line 182, in create_profile_from_target
+    self.create_profile_from_profile_template(profile_template, profile_name)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saket\Skynet\.venv\Lib\site-packages\dbt\task\init.py", line 166, in create_profile_from_profile_template
+    target = self.generate_target_from_input(prompts, initial_target)
+  File "C:\Users\saket\Skynet\.venv\Lib\site-packages\dbt\task\init.py", line 116, in generate_target_from_input
+    numeric_choice = click.prompt(prompt_msg, type=click.INT)
+  File "C:\Users\saket\Skynet\.venv\Lib\site-packages\click\termui.py", line 262, in prompt
+    value = prompt_func(prompt)
+  File "C:\Users\saket\Skynet\.venv\Lib\site-packages\click\termui.py", line 245, in prompt_func
+    raise Abort() from None
+click.exceptions.Abort
+
+[0m20:18:27.509057 [debug] [MainThread]: Command `dbt init` failed at 20:18:27.508914 after 172.51 seconds
+[0m20:18:27.509471 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014BC56E1940>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014BAC740170>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014BC57089E0>]}
+[0m20:18:27.509976 [debug] [MainThread]: Flushing usage events
+[0m20:18:29.171831 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:18:34.859297 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014D63955BE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014D614E4B90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014D662679D0>]}
+
+
+============================== 20:18:34.863642 | 00ac40d5-9ad9-4aa8-a67c-29470235db04 ==============================
+[0m20:18:34.863642 [info ] [MainThread]: Running with dbt=1.12.3
+[0m20:18:34.864217 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'maximum_seed_size_mib': '1', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\saket\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'invocation_command': 'dbt init dbt_flight_ops', 'hints_enabled': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'logs'}
+[0m20:18:34.887146 [info ] [MainThread]: A project called dbt_flight_ops already exists here.
+[0m20:18:34.893341 [debug] [MainThread]: Command `dbt init` succeeded at 20:18:34.893146 after 0.27 seconds
+[0m20:18:34.893814 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014D660A7A80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014D6611A8D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014D6629ECF0>]}
+[0m20:18:34.894245 [debug] [MainThread]: Flushing usage events
+[0m20:18:36.442582 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:18:52.025689 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027AAED05BE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027AAC8A4B90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027AB16179D0>]}
+
+
+============================== 20:18:52.030654 | d34c1d4c-279b-4627-8362-83237fe3b22f ==============================
+[0m20:18:52.030654 [info ] [MainThread]: Running with dbt=1.12.3
+[0m20:18:52.031362 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'version_check': 'True', 'target_path': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\saket\\.dbt', 'invocation_command': 'dbt init dbt_flight_ops', 'hints_enabled': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'logs'}
+[0m20:18:52.056000 [debug] [MainThread]: Starter project path: C:\Users\saket\Skynet\.venv\Lib\site-packages\dbt\include\starter_project
+[0m20:18:52.084048 [info ] [MainThread]: Setting up your profile.
+[0m20:18:54.788957 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m20:18:54.789368 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m20:18:54.789595 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m20:22:13.199796 [info ] [MainThread]: Profile dbt_flight_ops written to C:\Users\saket\.dbt\profiles.yml using target's profile_template.yml and your supplied values.
+[0m20:22:13.208691 [info ] [MainThread]: Running dbt debug to validate the project...
+[0m20:22:13.210820 [info ] [MainThread]: dbt version: 1.12.3
+[0m20:22:13.212385 [info ] [MainThread]: python version: 3.14.5
+[0m20:22:13.213597 [info ] [MainThread]: python path: C:\Users\saket\Skynet\.venv\Scripts\python.exe
+[0m20:22:13.214710 [info ] [MainThread]: os info: Windows-11-10.0.26200-SP0
+[0m20:22:13.352808 [info ] [MainThread]: Using profiles dir at C:\Users\saket\.dbt
+[0m20:22:13.353520 [info ] [MainThread]: Using profiles.yml file at C:\Users\saket\.dbt\profiles.yml
+[0m20:22:13.353983 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\saket\Skynet\dbt_flight_ops\dbt_project.yml
+[0m20:22:13.354400 [info ] [MainThread]: adapter type: databricks
+[0m20:22:13.354768 [info ] [MainThread]: adapter version: 1.12.5
+[0m20:22:13.479073 [info ] [MainThread]: Configuration:
+[0m20:22:13.479900 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m20:22:13.480456 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m20:22:13.480954 [info ] [MainThread]: Required dependencies:
+[0m20:22:13.481448 [debug] [MainThread]: Executing "git --help"
+[0m20:22:13.546537 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   history    EXPERIMENTAL: Rewrite history\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Set `HEAD` or the index to a known state\n   switch     Switch branches\n   tag        Create, list, delete or verify tags\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m20:22:13.547195 [debug] [MainThread]: STDERR: "b''"
+[0m20:22:13.547627 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m20:22:13.548067 [info ] [MainThread]: Connection:
+[0m20:22:13.548456 [info ] [MainThread]:   host: dbc-c8273aad-f73f.cloud.databricks.com
+[0m20:22:13.548781 [info ] [MainThread]:   http_path: /sql/1.0/warehouses/0aef0fc1081122ff
+[0m20:22:13.549105 [info ] [MainThread]:   catalog: skynet
+[0m20:22:13.549415 [info ] [MainThread]:   schema: default
+[0m20:22:13.549978 [info ] [MainThread]: Registered adapter: databricks=1.12.5
+[0m20:22:13.903595 [debug] [MainThread]: Databricks adapter: DatabricksDBTConnection(session-id=None, name=debug) - Creating connection
+[0m20:22:13.903920 [debug] [MainThread]: Acquiring new databricks connection 'debug'
+[0m20:22:17.856241 [info ] [MainThread]: Databricks adapter:   SPOG host (host_type='workspace'): no
+[0m20:22:17.857830 [info ] [MainThread]: Databricks adapter:   workspace_id (from ?o= in http_path): None
+[0m20:22:17.858820 [info ] [MainThread]: Databricks adapter:   databricks-sql-connector version: 4.4.0 (supported)
+[0m20:22:17.859768 [info ] [MainThread]: Databricks adapter:   databricks-sdk version: 0.117.0 (supported)
+[0m20:22:17.860661 [debug] [MainThread]: Using databricks connection "debug"
+[0m20:22:17.861411 [debug] [MainThread]: On debug: select 1 as id
+[0m20:22:17.862114 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m20:22:22.560999 [debug] [MainThread]: Databricks adapter: Connection(session-id=01f1ad27-39dc-11e9-9fb7-9e53b0759c7a) - Created
+[0m20:22:25.142331 [debug] [MainThread]: SQL status: OK in 7.280 seconds
+[0m20:22:25.144042 [debug] [MainThread]: Databricks adapter: Cursor(session-id=01f1ad27-39dc-11e9-9fb7-9e53b0759c7a, command-id=01f1ad27-3b04-17a4-855a-11de09bca3cc) - Closing
+[0m20:22:25.144720 [debug] [MainThread]: On debug: Close
+[0m20:22:25.145221 [debug] [MainThread]: Databricks adapter: Connection(session-id=01f1ad27-39dc-11e9-9fb7-9e53b0759c7a) - Closing
+[0m20:22:25.481634 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m20:22:25.482636 [info ] [MainThread]: [32mAll checks passed![0m
+[0m20:22:25.483345 [info ] [MainThread]: Your new dbt project "dbt_flight_ops" was created!
+Initialized new project in C:\Users\saket\Skynet\dbt_flight_ops\dbt_flight_ops
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m20:22:25.485159 [debug] [MainThread]: Command `dbt init` succeeded at 20:22:25.484981 after 213.69 seconds
+[0m20:22:25.485759 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027AB1457A80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027ACE4FC710>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000027AAE933130>]}
+[0m20:22:25.486256 [debug] [MainThread]: Flushing usage events
+[0m20:22:27.987658 [debug] [MainThread]: An error was encountered while trying to flush usage events

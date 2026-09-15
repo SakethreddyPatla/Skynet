@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: skynet_source
+    database: skynet
+    schema: default
+    tables:
+      - name: flight_ops_bronze
