@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 import requests
 import pandas as pd
 from databricks.sdk import WorkspaceClient
-
+load_dotenv()
 # Logging Configuration
 log_filename = "pipeline.log"
 logging.basicConfig(
@@ -117,34 +117,21 @@ def upload_to_databricks_volume(local_file_path):
         w.files.upload(volume_path, f, overwrite=True)
     
     logger.info(f"Successfully pushed batch to Databricks Volume: {volume_path}")
-    
+
 if __name__ == "__main__":
     logger.info(" Starting OpenSky Phase 1 Extraction Pipeline ")
     
     raw_payload, api_latency = fetch_opensky_states()
     
     if raw_payload:
-        success = process_and_save_raw_payload(raw_payload, api_latency)
-        if success:
-            logger.info(" Phase 1 Pipeline Completed Successfully ")
+        saved_file_path = process_and_save_raw_payload(raw_payload, api_latency)
+        
+        if saved_file_path:
+            # CALL THE UPLOAD FUNCTION
+            upload_to_databricks_volume(saved_file_path)
+            logger.info(" Phase 1 Pipeline & Databricks Sync Completed Successfully ")
         else:
             logger.error(" Phase 1 Pipeline Completed with Warnings (No Data Saved) ")
     else:
         logger.error(" Phase 1 Pipeline Failed ")
 
-def upload_to_databricks_volume(local_file_path):
-    """Uploads local raw JSON file to Databricks Volume using workspace API credentials."""
-    host = os.getenv("DATABRICKS_HOST")
-    token = os.getenv("DATABRICKS_TOKEN")
-    
-    if not host or not token:
-        logger.error("Databricks environment variables missing. Skipping cloud upload.")
-        return
-
-    w = WorkspaceClient(host=host, token=token)
-    volume_path = f"/Volumes/skynet/default/raw_open_sky_landing/{os.path.basename(local_file_path)}"
-    
-    with open(local_file_path, "rb") as f:
-        w.files.upload(volume_path, f, overwrite=True)
-    
-    logger.info(f"Successfully pushed batch to Databricks Volume: {volume_path}")
