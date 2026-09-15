@@ -1,7 +1,12 @@
 {{
     config(
         materialized='table',
-        file_format='delta'
+        file_format='delta',
+        pre_hook="""
+        COPY INTO skynet.default.flight_ops_bronze
+        FROM '/Volumes/skynet/default/raw_open_sky_landing/'
+        FILEFORMAT = JSON;
+    """
     )
 }}
 
