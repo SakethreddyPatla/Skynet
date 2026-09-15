@@ -76,16 +76,15 @@ def fetch_opensky_states(max_retries=3, backoff_factor=10):
     return None, None
 
 def process_and_save_raw_payload(payload, latency):
-
     if not payload or "states" not in payload or payload["states"] is None:
-        logger.warning("Recieved empty or invalid state payload.")
-        return False
+        logger.warning("Received empty or invalid state payload.")
+        return None  # Return None on failure
     
     states_data = payload["states"]
     record_count = len(states_data)
     extraction_timestamp = datetime.now(timezone.utc)
     timestamp_str = extraction_timestamp.strftime("%Y%m%d_%H%M%S")
-    logger.info(f"Extracted {record_count} state vectors fro API.")
+    logger.info(f"Extracted {record_count} state vectors from API.")
 
     df = pd.DataFrame(states_data, columns=OPENSKY_COLUMNS)
 
@@ -98,9 +97,11 @@ def process_and_save_raw_payload(payload, latency):
     file_path = os.path.join(OUTPUT_DIR, file_name)
     df.to_json(file_path, orient="records", lines=True)
 
-    logger.info(f"Batch sucessfully saved to disk: {file_path}")
+    logger.info(f"Batch successfully saved to disk: {file_path}")
     logger.info(f"Pipeline Audit: Records = {record_count} | Output Size = {os.path.getsize(file_path)} bytes")
-    return True
+    
+    # RETURN THE FILE PATH STRING (NOT TRUE)
+    return file_path
 def upload_to_databricks_volume(local_file_path):
     """Uploads local raw JSON file to Databricks Volume using workspace API credentials."""
     host = os.getenv("DATABRICKS_HOST")
@@ -126,8 +127,8 @@ if __name__ == "__main__":
     if raw_payload:
         saved_file_path = process_and_save_raw_payload(raw_payload, api_latency)
         
+        # If saved_file_path is a string path (not None), execute upload
         if saved_file_path:
-            # CALL THE UPLOAD FUNCTION
             upload_to_databricks_volume(saved_file_path)
             logger.info(" Phase 1 Pipeline & Databricks Sync Completed Successfully ")
         else:
